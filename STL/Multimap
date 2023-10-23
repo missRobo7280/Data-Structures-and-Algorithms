@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    multimap<int,string>mp;
+    mp.insert(make_pair(1,"swati"));
+    mp.insert(make_pair(2,"Priya"));
+    mp.insert(make_pair(3,"jaiswal"));
+    mp.insert(make_pair(1,"muskaan"));
+    mp.insert(make_pair(1,"musu"));
+    mp.insert_range(mm)
+    for(auto it:mp)
+    {
+        cout<<it.first<<" "<<it.second<<"\n";
+        }
+    mp.erase(2);
+    for(auto it:mp)
+    {
+        cout<<it.second<<"\n";
+    }
+}
