@@ -1,0 +1,23 @@
+//finding the last occurence of a key in an array
+#include<iostream>
+using namespace std;
+int lastOcc(int *arr,int key,int n){
+//base case
+    if(n==0)
+    return -1;
+    //recursive case
+    int smallAns=lastOcc(arr+1,key,n-1);
+    //using the small ans to calculate bigger ans
+    if(smallAns==-1)
+    {
+        if(arr[0]==key)return 0;
+        return -1;
+    }
+    else
+    return smallAns+1;
+}
+int main()
+{
+    int a[6]={7,4,7,6,7,4};
+    cout<<lastOcc(a,7,6);
+}
