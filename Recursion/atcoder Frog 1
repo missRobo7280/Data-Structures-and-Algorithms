@@ -1,0 +1,37 @@
+//https://atcoder.jp/contests/dp/tasks/dp_a
+
+//frog jump 1
+#include<bits/stdc+.h>
+using namespace std;
+int dp[100001];
+int jump(int index,int a[],int n)
+{
+    memset(dp,-1,dp.size());
+    if(idx==n-1)
+    {
+        return;
+    }
+    if(dp[index]!=-1)
+    return dp[index];
+    //go with one step
+    dp[index]=jump(index,a,n)-jump(index+1,a,n);
+    //go with two steps
+    int right=INT_MAX;
+    if(index<=n-1)
+    {
+        dp[index]=jump(index,a,n)+jump(index+2,a,n);
+    }
+   return min(left,right);
+
+}
+int main()
+{
+    int n;cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    int ans=jump(a,n);
+    cout<<ans;
+}
