@@ -1,0 +1,38 @@
+//generating the ip addresses from the given string
+#include<bits/stdc++.h>
+using namespace std;
+void help(vector<string>&ans,const std::string& s,int i,int j,int dots,const std::string &temp)
+    {
+        int n=s.length();
+        if(i==n && dots==4)
+        {
+            ans.push_back(temp.substr(1));
+            return ;
+        }
+        for(int k=i;k<i+3 && k<j;k++)
+        {
+            string addon=s.substr(i,k-i+1);
+            if((s[i]=='0' && addon.size()>1) || stoi(addon)>255)
+            {
+                return;
+            }
+            help(ans,s,k+i,j,dots+1,temp+'.'+addon);
+        }
+    }
+int main()
+{
+    string s;
+    cin>>s;
+    int n=s.length();
+    if(n<4)
+    {
+        cout<<-1;
+    }
+    vector<string>ans;
+    help(s,0,0,n-1,"",ans);
+    for(string s:ans)
+    {
+        cout<<s<<endl;
+    }
+}
+
