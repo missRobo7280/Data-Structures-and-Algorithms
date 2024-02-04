@@ -1,0 +1,49 @@
+//recursive approcah to solve the Josephus Problem
+//using only n and k values
+#include<bits/stdc++.h>
+using namespace std;
+int josep(int n,int k)
+{
+    if(n==0)
+    return 0;
+
+    return (josep(n-1,k)+k)%n;
+}
+int main()
+{
+    int n,k;
+    cin>>n>>k;
+    cout<<josep(n,k-1)+1;
+}
+
+//using an array of values
+//recursive program for the Josephus' Problem
+//Tip: whenever we have a problem like it is in circle then we can make the use of mod with size of the array that will make us reach the required index 
+//or element if we were sitting in the circle would 
+#include<bits/stdc++.h>
+using namespace std;
+void josep(vector<int>&arr ,int k, int index)
+{
+    //base case
+    if(arr.size()==1)
+    {
+        cout<<arr[0]<<" ";
+        return ;
+    }
+    //recursive case
+    index=(index+k)%arr.size();
+    arr.erase(arr.begin()+index);
+    josep(arr,k,index);
+
+}
+int main()
+{
+    int n,k;
+    cin>>n>>k;
+    vector<int>arr(n);
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    josep(arr,k-1,0);
+}
