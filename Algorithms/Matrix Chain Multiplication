@@ -1,0 +1,33 @@
+//Matrix Chain Multiplication problem
+#include<bits/stdc++.h>
+using namespace std;
+//int dp[100][100];
+int mcm(int dim[],int i,int j)
+{
+    //base case
+    if(i==j)// when we are the positions of 1,1 or 2,2 or 3,3 or 4,4   i.e. we are trying to multiply the matrix to itself.
+    return 0;
+
+    int matValue;
+    int mini=INT_MAX;
+    //minimum of(matrix[i][k]+p)
+
+    for(int k=i;k<j;k++)
+    {
+        matValue=mcm(dim,i,k) + mcm(dim,k+1,j) + (dim[i-1]*dim[k]*dim[j]);
+        if(matValue<mini)
+        mini=matValue;
+    }
+    return mini;
+    
+
+}
+int main()
+{
+    int n;cin>>n;
+    int dim[n];
+    for(int i=0;i<n;i++)
+    cin>>dim[i];
+    //memset(dp,-1,sizeof(dp));
+    cout<<mcm(dim,1,n-1);
+}
