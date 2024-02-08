@@ -1,0 +1,20 @@
+//finding the fibonacci of n using recursion
+//base case
+//recursive call
+//compute big answer with the help of sub problems
+#include<iostream>
+using namespace std;
+int fib(int n)
+{
+    //base case
+    if(n==0 || n==1)
+    return n;
+    int small_ans1=fib(n-1);
+    int small_ans2=fib(n-2);
+    return small_ans1+small_ans2;
+}
+int main()
+{
+    int n;cin>>n;
+    cout<<fib(n);
+}
