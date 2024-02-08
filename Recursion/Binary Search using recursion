@@ -1,0 +1,32 @@
+//binary search using recursion
+#include<iostream>
+using namespace std;
+int BS(int l,int h,int k,int a[])
+{
+    if(l>h)
+    return -1;
+    int mid=(l+h)>>1;
+
+    if(a[mid]==k)
+    return mid;
+
+    else if(a[mid]<k)
+    return BS(mid+1,h,k,a);
+
+    else
+    return BS(l,mid-1,k,a);
+}
+int main()
+{
+    int n;cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    int low=0;
+    int high=n-1;
+    int key;cout<<"enter element to be searched";
+    cin>>key;
+    cout<<BS(low,high,key,a);
+}
