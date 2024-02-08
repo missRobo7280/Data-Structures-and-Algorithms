@@ -1,0 +1,28 @@
+//rod cutting problem using recursion
+#include<bits/stdc++.h>
+using namespace std;
+
+int fun(int a[],int n,int len)
+{
+    //base case
+    if(len==0 || n==0)
+        return 0;
+    //recursive case
+    if(n>len)
+    return fun(a,n-1,len);
+    //first when we pick the element and second when we do not pick the element from the array
+    return max(a[n-1]+fun(a,n,len-n),fun(a,n-1,len));
+
+}
+int main()
+{
+    int n;cin>>n;
+    int prices[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>prices[i];
+    }
+    int ans=fun(prices,n,n);
+    cout<<ans;
+}
+
