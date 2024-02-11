@@ -1,0 +1,40 @@
+//recaman's sequence
+#include<bits/stdc++.h>
+using namespace std;
+vector<int>recaman(int n)
+{
+    vector<int>ans;
+    ans.push_back(0);
+
+    //base case
+    if(n<=0)
+    ans.push_back(0);
+
+    unordered_set<int>s;
+    s.insert(0);
+    //recursive case
+    int prev=0;
+    for(int i=1;i<=n;i++)
+    {
+        int curr=prev-i;
+        if(curr<0 || s.find(curr)!=s.end())
+        {
+            curr=prev+i;
+        }
+        s.insert(curr);
+        prev=curr;
+        ans.push_back(curr);
+    }
+    
+    return ans;
+}
+int main()
+{
+    int n;cin>>n;
+    vector<int>mainans=recaman(n);
+    for(auto it:mainans)
+    {
+        cout<<it<<" ";
+    }
+
+}
