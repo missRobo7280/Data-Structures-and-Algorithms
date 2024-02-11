@@ -1,6 +1,6 @@
 //finding the valid path with required sum in the given 2-D array
 //point to be noted : whenever you have sum problem instead of taking an extra variable to store the changing sum rather go on decreasing the value of k and check if
-//reaches 0 
+//reaches 0 ;when it reaches 0 it means the sum uptill now is equal to k
 #include<bits/stdc++.h>
 using namespace std;
 int dp[101][101][101];
