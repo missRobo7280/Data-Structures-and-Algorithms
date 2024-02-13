@@ -27,7 +27,9 @@ int main()
     }
     vector<int>vis(n,0);
     vector<int>ans;
-    DFS(1,adj,vis,ans);
+    cout<<"Enter the start node:";
+    int start_node;cin>>start_node;
+    DFS(start_node,adj,vis,ans);
     for(auto it:ans)
     {
         cout<<it<<" ";
