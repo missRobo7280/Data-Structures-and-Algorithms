@@ -1,0 +1,24 @@
+//printing the Adjacency List
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int v,e;cin>>v>>e;
+    vector<int>adj[v+1];
+    for(int i=0;i<e;i++)
+    {
+        int u,v;
+        cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    for(int i=0;i<v;i++)
+    {
+        cout<<i<<"->";
+        for(auto it:adj[i])
+        {
+            cout<<it<<" ";
+        }
+        cout<<endl;
+    }
+}
