@@ -1,0 +1,43 @@
+//BFS traversal of a graph
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> BFS(int node,int vis[],vector<int>adj[],vector<int>&ans)
+{
+    queue<int>Q;
+    vis[node]=1;
+    Q.push(node);
+    while(!Q.empty())
+    {
+        int top=Q.front();    //first we find the current node as top
+        Q.pop();
+        ans.push_back(top);    //we push that in our answer vector
+        for(auto it:adj[top]) //we process all the nodes that can be reached from the current node
+        {
+            if(!vis[it])   //we check if we have not previously visited the current node
+            Q.push(it);    //if we have not visited it then we push it into the queue
+            vis[it]=1;    //then we make value of the node in the visited array as 1
+        }
+
+    }
+    return ans;
+}
+int main()
+{
+    int n,e;cin>>n>>e;//n-->>nodes e->edges
+    vector<int>adj[n+1];
+    for(int i=0;i<e;i++)//we need to give e because we can have 7 nodes but maybe 8 or 9 or more edges
+    {
+        int u,v;
+        cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);//if it was a directed graph we would have not used this line
+    }
+    
+    int vis[n+1]={0};
+    vector<int>ans;
+    ans=BFS(1,vis,adj,ans);
+    for(auto it:ans)
+    {
+        cout<<it<<" ";
+    }
+}
