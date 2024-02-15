@@ -14,7 +14,7 @@ bool DFS(int node,int parent,vector<int>adj[],int vis[])
             if(DFS(it,node,adj,vis))
             return true;
         }
-        else if(node!=parent)
+        else if(it!=parent)
         return true;
     }
     return false;
