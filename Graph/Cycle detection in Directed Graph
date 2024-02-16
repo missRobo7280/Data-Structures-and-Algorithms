@@ -1,0 +1,55 @@
+//cycle detection in directed graph using DFS
+#include<bits/stdc++.h>
+using namespace std;
+bool cycleDFS(int node,vector<int>adj[],int vis[] ,int pathVis[])
+{
+    vis[node]=1;
+    pathVis[node]=1;
+    for(auto it:adj[node])
+    {
+        if(!vis[it])
+        {
+        if(cycleDFS(it,adj,vis,pathVis))
+        return true;
+        }
+        else if(pathVis[it])
+        return true;
+    }
+    pathVis[node]=0;
+    return false;
+}
+bool checkCycle(int N,vector<int>adj[])
+{
+    int vis[N+1];
+    int pathVis[N+1];
+    memset(vis,0,sizeof(vis));
+    memset(pathVis,0,sizeof(pathVis));
+    for(int i=0;i<N;i++)
+    {
+        if(!vis[i])
+        if(cycleDFS(i,adj,vis,pathVis))
+        return true;
+    }
+    return false;
+
+}
+int main()
+{
+    int n,e;
+    cin>>n>>e;
+    vector<int>adj[n+1];
+    for(int i=0;i<e;i++)
+    {
+        int u,v;
+        cin>>u>>v;
+        adj[u].push_back(v);
+
+    }
+    if(checkCycle(n,adj))
+    {
+    cout<<"Cycle detected"<<endl;
+    }
+    
+    else
+    cout<<"Cycle not detected";
+}
