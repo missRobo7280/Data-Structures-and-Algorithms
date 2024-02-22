@@ -1,0 +1,63 @@
+//size[ i ] = the number of nodes in the ith connected component. 
+//Initially, size[ i ] =1, for all 1<=i<=N. This is because, initially, all connected components contain only one node.
+#include<bits/stdc++.h>
+using namespace std;
+
+class DSU
+{
+    public:
+    vector<int>parent,size;
+
+    DSU(int n)
+    {
+        parent.resize(n+1);
+        size.resize(n+1,1);
+        iota(parent.begin(),parent.end(),0);
+    }
+
+    int find_parent(int node)
+    {
+        if(parent[node]==node)return node;
+        return parent[node]=find_parent(parent[node]);
+    }
+
+    void union_sets(int a,int b)
+    {
+        int pa=find_parent(a);
+        int pb=find_parent(b);
+        if(size[pa]<size[pb])
+        {
+            parent[pa]=pb;
+            size[pb]+=size[pa];
+        }
+        else{
+            parent[pb]=pa;
+            size[pa]+=size[pb];
+        }
+    }
+};
+int main()
+{
+    int n;cin>>n;
+    DSU obj(10);
+    obj.union_sets(1,2);
+    obj.union_sets(3,4);
+    obj.union_sets(2,5);
+    if(obj.find_parent(5)==obj.find_parent(1))
+    cout<<"haan bhai dono ke parents same same hai"<<endl;
+    else
+    cout<<"nahi hai same parents yarr"<<endl;
+    if(obj.find_parent(3)==obj.find_parent(1))
+    cout<<"haan bhai dono ke parents same same hai"<<endl;
+    else
+    cout<<"nahi hai same parents yarr"<<endl;
+}
+
+/*PS C:\Users\Swati> cd "C:\Users\Swati\AppData\Local\Temp\" ; if ($?) { g++ tempCodeRunnerFile.cpp -o tempCodeRunnerFile } ; if ($?) { .\tempCodeRunnerFile }
+10
+haan bhai dono ke parents same same hai
+nahi hai same parents yarr
+PS C:\Users\Swati\AppData\Local\Temp> 
+
+
+*/
