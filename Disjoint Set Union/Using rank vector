@@ -1,0 +1,69 @@
+//disjoint set union using combination of path compression and rank vector usage
+#include<bits/stdc++.h>
+using namespace std;
+class DSU{
+    public:
+    vector<int>parent,rank;
+
+    DSU(int n){
+    parent.resize(n+1);
+    rank.resize(n+1,0);
+    iota(parent.begin(),parent.end(),0);
+    }
+
+    //the iota function is used to assign to every value in the range of successive values the increasing value of the start value.
+
+    //code for path compression
+    int find_parent(int a)
+    {
+    if(parent[a]==a)
+    return a;
+    return parent[a] = find_parent(parent[a]);
+    }
+
+    void Union(int a,int b)
+    {
+        int pa=find_parent(a);
+        int pb=find_parent(b);
+        if(pa==pb)  return;
+        else if(rank[pa]<rank[pb])
+        {
+            parent[pa]=pb;
+        }
+        else if(rank[pa]>rank[pb])
+        {
+            parent[pb]=pa;
+        }
+        else
+        {
+            parent[pb]=pa;
+            rank[pa]++;
+        }
+
+    }
+
+};
+
+int main()
+{
+    DSU obj(10);
+    obj.Union(1,2);
+    obj.Union(3,4);
+    obj.Union(2,5);
+    obj.Union(3,5);
+    if(obj.find_parent(1)==obj.find_parent(7))
+    cout<<"YES"<<endl;
+    else
+    cout<<"NO"<<endl;
+    if(obj.find_parent(2)==obj.find_parent(3))
+    cout<<"YES"<<endl;
+    else
+    cout<<"NO"<<endl;
+
+}
+
+/*PS C:\Users\Swati\AppData\Local\Temp> cd "C:\Users\Swati\AppData\Local\Temp\" ; if ($?) { g++ tempCodeRunnerFile.cpp -o tempCodeRunnerFile } ; if ($?) { .\tempCodeRunnerFile }
+NO
+YES
+
+*/
