@@ -1,0 +1,19 @@
+//Node creation
+struct Node{
+    int data;
+    Node* next;
+    Node(int new_data)
+    {
+        data=new_data;
+        next=nullptr;
+    }
+};
+
+//insertion at front 
+void insert(Node* head,int new_data)
+{
+    Node* newNode=new Node(new_data);
+    newNode->next=head;
+    return newNode;
+    
+}
