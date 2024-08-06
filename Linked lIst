@@ -17,3 +17,14 @@ void insert(Node* head,int new_data)
     return newNode;
     
 }
+//traversal
+void printList(Node* head)
+{
+    Node* temp=head;
+    while(head!=NULL)
+    {
+        cout<<temp.data<<" ";
+        temp=temp->next;
+    }
+    return head;
+}
