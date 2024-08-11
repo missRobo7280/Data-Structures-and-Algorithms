@@ -3,6 +3,7 @@
 using namespace std;
 void reverseArrayKTimes(int a[],int k,int n)
 {
+    k=k%n;
     reverse(a,a+n);
     reverse(a,a+k);
     reverse(a+k,a+n);
