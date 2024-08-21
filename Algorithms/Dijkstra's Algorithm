@@ -1,0 +1,66 @@
+//Dijkstra's algorithm
+#include<bits/stdc++.h>
+using namespace std;
+#define V 9
+bool sptSet[V];
+int min_distance (int dist[],bool sptSet[])
+{
+    int min=INT_MAX,min_index;
+    for(int i=0;i<V;i++)
+    {
+        if(sptSet[i]==false && dist[i]<=min)
+        min=dist[i],min_index=i;
+    }
+    return min_index;
+}
+void printSolution(int dist[])
+{
+    cout<<"VERTEX"<<"\t\t\t"<<"Shortest  Distance from source"<<"\n";
+    for(int i=0;i<V;i++)
+    {
+        cout<<i<<"\t\t\t\t"<<dist[i]<<endl;
+    }
+}
+void dijkstra(int graph[V][V],int src)
+{
+    int dist[V];
+    
+    for(int i=0;i<V;i++)
+    {
+        dist[i]=INT_MAX,sptSet[i]=false;//it means it is still not visited
+    }
+        dist[src]=0;
+        for(int cnt=0;cnt<V-1;cnt++)
+        {
+            int u=min_distance(dist,sptSet);
+            sptSet[u]=true;
+            for(int v=0;v<V;v++)
+            {
+                /*in the below if statement we are going to check four conditions 
+                1. if the current node v is not visited
+                2. if there exists an edge between the nodes u and v 
+                3. if the dist is not infinity or the node is reachable 
+                4. and the sum of distance of u and edge is less than the distance of the node v*/
+                if(!sptSet[v] && graph[u][v] && dist[u]!=INT_MAX && dist[u]+graph[u][v]<dist[v])
+                {
+                    dist[v]=dist[u]+graph[u][v];
+                }
+            }
+        }
+        printSolution(dist);
+    
+}
+int main()
+{
+    int graph[V][V] = { { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
+                        { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
+                        { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
+                        { 0, 0, 7, 0, 9, 14, 0, 0, 0 },
+                        { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
+                        { 0, 0, 4, 14, 10, 0, 2, 0, 0 },
+                        { 0, 0, 0, 0, 0, 2, 0, 1, 6 },
+                        { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
+                        { 0, 0, 2, 0, 0, 0, 6, 7, 0 } };
+    dijkstra(graph,0);
+
+}
