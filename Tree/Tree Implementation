@@ -1,0 +1,57 @@
+//Tree implementation in C++
+#include<iostream>
+using namespace std;
+struct TreeNode{
+    int data;
+    struct TreeNode *left,*right;
+    TreeNode(int val)
+    {
+        data=val;
+        left=NULL;
+        right=NULL;
+    }
+};
+//inorder traversal
+void inOrder(TreeNode *root)
+{
+    if(root==NULL)
+    return ;
+    cout<<root->data<<" ";
+    inOrder(root->left);
+    
+    inOrder(root->right);
+}
+//postorder traversal
+void postOrder(TreeNode *root)
+{
+    if(root==NULL)
+    return;
+    postOrder(root->left);
+    postOrder(root->right);
+    cout<<root->data<<" ";
+    
+}
+//preOrder traversal
+void preOrder(TreeNode *root)
+{
+    if(root==NULL)
+    return;
+    preOrder(root->left);
+    cout<<root->data<<" ";
+    preOrder(root->right);
+}
+int main()
+{
+    struct TreeNode *root=new TreeNode(1);
+    root->left=new TreeNode(2);
+    root->right=new TreeNode(3);
+    root->left->left=new TreeNode(4);
+    root->left->right=new TreeNode(5);
+    root->right->left=new TreeNode(6);
+    root->right->right=new TreeNode(7);
+    inOrder(root);
+    cout<<endl;
+    preOrder(root);
+    cout<<endl;
+    postOrder(root);
+}
