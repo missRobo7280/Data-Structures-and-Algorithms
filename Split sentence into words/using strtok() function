@@ -1,0 +1,33 @@
+/using strtok() function
+//The strtok() function is a C function that is used to split the sentence into words based on spaces, 
+//but this function only works on the C-Style strings i.e. character arrays terminated by NULL character.
+
+//strtok(str, delims);
+#include<iostream>
+#include<cstring>
+#include<vector>
+
+
+using namespace std;
+
+vector<string > splitSentence(char *sen)
+{
+    vector<string>words;
+    const char delimiter[]=" ";
+    char *word=strtok(sen,delimiter);
+    while(word !=nullptr)
+    {
+        words.push_back(word);
+        word=strtok(nullptr,delimiter);
+    }
+    return words;
+}
+int main()
+{
+    char sentence[]="Swati priya Jaiswal";
+    vector< string > ans=splitSentence(sentence);
+    for(auto it:ans)
+    {
+        cout<<it<<" ";
+    }
+}
