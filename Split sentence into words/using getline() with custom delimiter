@@ -1,0 +1,32 @@
+//using getline() with custom delimiter
+
+//getline(input_stream, string_variable, delimiter);
+
+#include<iostream>
+#include<sstream>
+#include<vector>
+
+using namespace std;
+
+vector<string > splitSentence(string sen)
+{
+    stringstream ss(sen);
+    string word;
+    vector<string>words;
+    while(getline(ss,word,' '))
+    {
+        words.push_back(word);
+    }
+    return words;
+}
+int main()
+{
+    string sentence;
+    //cin>>sentence;
+    getline(cin,sentence); // we cannot use cin>>sentence as cin will read the input only uptill the first space as it uses space as a delimiter.
+    vector< string > ans=splitSentence(sentence);
+    for(auto it:ans)
+    {
+        cout<<it<<" ";
+    }
+}
