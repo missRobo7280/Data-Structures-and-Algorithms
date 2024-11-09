@@ -1,0 +1,20 @@
+//dll
+
+class Node
+{
+    public:
+    int data;
+    Node* next;
+    Node* prev;
+    Node(int x,Node* next1,Node* prev1)
+    {
+        data=x;
+        next=next1;
+        prev=prev1;
+    }
+    Node(int x)
+    {
+        data=x;
+        nex=prev=nullptr;
+    }
+};
