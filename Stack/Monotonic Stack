@@ -1,0 +1,5 @@
+About Monotonic Stack:
+Monotonic Stack is a kind of data structure that is used to store the elements in  a particular order , either increasing or decreasing. It is a stack 
+that ensures that whenever an element is going to be inserted it doesn't break the rule or the order. if the element is breaking the order then the 
+elements are removed uptill the rule is no longer broken and then the new element is added.
+Useful for solving problems like Next Greater Elemenet, Next Smaller Element, etc.
