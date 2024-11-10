@@ -1,0 +1,40 @@
+//monotonic stack
+
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> monoStack(vector<int>&arr,int n)
+{
+    stack<int>st;
+    vector<int>res;
+    for(int i=0;i<n;i++)
+    {
+        while(!st.empty() && arr[i]>st.top())
+        {
+            st.pop();
+        }
+        st.push(arr[i]);
+    }
+    while(!st.empty())
+    {
+        res.insert(res.begin(),st.top());
+        st.pop();
+    }
+    return res;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int>arr;
+    for(int i=0;i<n;i++)
+    {
+        int q;
+        cin>>q;
+        arr.push_back(q);
+    }
+    vector<int>ans=monoStack(arr,n);
+    for(auto it:ans)
+    {
+        cout<<it<<" ";
+    }
+}
